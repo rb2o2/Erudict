@@ -6,4 +6,11 @@ public class GameField {
 	public Bonus bonus;
 	public Token letter;
 
+	public GameField(int x, int y, Bonus bonus, Token token) {
+		this.x = x;
+        this.y = y;
+        this.bonus = bonus;
+        this.letter = token;
+	}
+
 }
