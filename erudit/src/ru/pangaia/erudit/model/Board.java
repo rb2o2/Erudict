@@ -14,7 +14,7 @@ import ru.pangaia.erudit.util.Bag;
 public class Board {
 	private static final String TOKENS_DEF_FILE = "erudit/tokens.html";
 	private Bag<Token> tokenPool = new Bag<>();
-	private GameField[][] gameMap;
+	public GameField[][] gameMap;
 	
 	public Board() {
 		List<Token> tokendata = Util.loadTokenDefs(TOKENS_DEF_FILE);
@@ -24,6 +24,10 @@ public class Board {
 		Util.fillPool(tokendata, tokenPool);
 		gameMap = Util.makemap();
 	}
+
+    public GameField getField(int x, int y) {
+        return gameMap[x+7][y+7];
+    }
 	
 	static class Util {
 		private static boolean fillPool(List<Token> data, Bag<Token> pool) {
@@ -64,9 +68,9 @@ public class Board {
 
 		private static GameField[][] makemap() {
 			GameField[][] map = new GameField[15][15];
-			for (int i = -8; i < 9; i++) {
-				for (int j = -8; i < 9; j++) {
-					map[i][j] = new GameField(i, j, Bonus.None, null);
+			for (int i = -7; i < 8; i++) {
+				for (int j = -7; j < 8; j++) {
+					map[i+7][j+7] = new GameField(i, j, Bonus.None, null);
 				}
 			}
 			return map;
